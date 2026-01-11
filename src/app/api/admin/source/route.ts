@@ -65,16 +65,16 @@ export async function POST(request: NextRequest) {
         if (!key || !name || !api) {
           return NextResponse.json({ error: '缺少必要参数' }, { status: 400 });
         }
-        // 禁止添加 openlist 和 emby 保留关键字
-        if (key === 'openlist') {
+        // 禁止添加保留关键字
+        if (key === 'openlist' || key === 'xiaoya') {
           return NextResponse.json(
-            { error: 'openlist 是保留关键字，不能作为视频源 key' },
+            { error: `${key} 是保留关键字，不能作为视频源 key` },
             { status: 400 }
           );
         }
-        if (key === 'emby') {
+        if (key.startsWith('emby')) {
           return NextResponse.json(
-            { error: 'emby 是保留关键字，不能作为视频源 key' },
+            { error: 'emby 开头的 key 是保留关键字，不能作为视频源 key' },
             { status: 400 }
           );
         }
