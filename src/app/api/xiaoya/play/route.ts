@@ -146,6 +146,7 @@ export async function GET(request: NextRequest) {
           name: task.template_id,
           url: task.url,
         }))
+        .filter((quality: any) => quality.url && quality.url.trim() !== '') // 过滤空URL
         .sort((a: any, b: any) => (qualityOrder[a.name] || 999) - (qualityOrder[b.name] || 999));
 
       if (qualities.length === 0) {
@@ -171,7 +172,18 @@ export async function GET(request: NextRequest) {
       // 如果指定了 format=json，使用 getFinalUrl 并返回 JSON
       if (format === 'json') {
         const finalUrl = await getFinalUrl(playUrl);
+
+        // 检查URL是否为空
+        if (!finalUrl || finalUrl.trim() === '') {
+          throw new Error('获取到的播放链接为空');
+        }
+
         return NextResponse.json({ url: finalUrl });
+      }
+
+      // 检查URL是否为空
+      if (!playUrl || playUrl.trim() === '') {
+        throw new Error('获取到的播放链接为空');
       }
 
       // 默认返回重定向（用于 tvbox）
