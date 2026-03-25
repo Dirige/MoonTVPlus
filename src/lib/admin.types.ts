@@ -30,6 +30,11 @@ export interface AdminConfig {
     PansouUsername?: string;
     PansouPassword?: string;
     PansouKeywordBlocklist?: string;
+    // 磁链配置
+    MagnetProxy?: string;
+    MagnetMikanReverseProxy?: string;
+    MagnetDmhyReverseProxy?: string;
+    MagnetAcgripReverseProxy?: string;
     // 评论功能开关
     EnableComments: boolean;
     // 自定义去广告代码

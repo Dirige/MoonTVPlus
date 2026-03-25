@@ -256,6 +256,11 @@ async function getInitConfig(configFile: string, subConfig: {
       PansouUsername: '',
       PansouPassword: '',
       PansouKeywordBlocklist: '',
+      // 磁链配置
+      MagnetProxy: '',
+      MagnetMikanReverseProxy: '',
+      MagnetDmhyReverseProxy: '',
+      MagnetAcgripReverseProxy: '',
       // 评论功能开关
       EnableComments: false,
     },
@@ -432,6 +437,10 @@ export function configSelfCheck(adminConfig: AdminConfig): AdminConfig {
       PansouUsername: '',
       PansouPassword: '',
       PansouKeywordBlocklist: '',
+      MagnetProxy: '',
+      MagnetMikanReverseProxy: '',
+      MagnetDmhyReverseProxy: '',
+      MagnetAcgripReverseProxy: '',
       EnableComments: false,
     };
   }
@@ -448,6 +457,18 @@ export function configSelfCheck(adminConfig: AdminConfig): AdminConfig {
   }
   if (adminConfig.SiteConfig.PansouKeywordBlocklist === undefined) {
     adminConfig.SiteConfig.PansouKeywordBlocklist = '';
+  }
+  if (adminConfig.SiteConfig.MagnetProxy === undefined) {
+    adminConfig.SiteConfig.MagnetProxy = '';
+  }
+  if (adminConfig.SiteConfig.MagnetMikanReverseProxy === undefined) {
+    adminConfig.SiteConfig.MagnetMikanReverseProxy = '';
+  }
+  if (adminConfig.SiteConfig.MagnetDmhyReverseProxy === undefined) {
+    adminConfig.SiteConfig.MagnetDmhyReverseProxy = '';
+  }
+  if (adminConfig.SiteConfig.MagnetAcgripReverseProxy === undefined) {
+    adminConfig.SiteConfig.MagnetAcgripReverseProxy = '';
   }
   if (!adminConfig.UserConfig) {
     adminConfig.UserConfig = { Users: [] };
